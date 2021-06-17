@@ -1,12 +1,12 @@
 plugins {
-    kotlin("jvm") version "1.4.21"
+    kotlin("jvm") version "1.5.0"
     id("org.jlleitschuh.gradle.ktlint") version "10.0.0"
     java
     maven
     checkstyle
 }
 
-group = "org.valkyrienskies.physics-api"
+group = "org.valkyrienskies.physics_api"
 version = "1.0"
 
 repositories {
