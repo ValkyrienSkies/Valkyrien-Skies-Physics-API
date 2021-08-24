@@ -9,5 +9,9 @@ interface RigidBody<T : CollisionShape> {
     val rigidBodyTransform: RigidBodyTransform
     val inertiaData: RigidBodyInertiaData
     var isStatic: Boolean
+    var restitutionCoefficient: Double
+    var dynamicFrictionCoefficient: Double
+    var staticFrictionCoefficient: Double
+
     fun setRigidBodyTransform(position: Vector3dc, rotation: Quaterniondc)
 }
