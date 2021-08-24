@@ -5,4 +5,5 @@ interface RigidBody<T : CollisionShape> {
     val collisionShape: T
     val rigidBodyTransform: RigidBodyTransform
     val inertiaData: RigidBodyInertiaData
+    var isStatic: Boolean
 }
