@@ -1,3 +1,5 @@
 package org.valkyrienskies.physics_api.voxel_updates
 
-data class VoxelRigidBodyShapeUpdates(val rigidBodyId: Int, val shapeUpdates: List<IVoxelShapeUpdate>)
+import org.valkyrienskies.physics_api.VoxelRigidBody
+
+data class VoxelRigidBodyShapeUpdates(val voxelRigidBody: VoxelRigidBody, val shapeUpdates: List<IVoxelShapeUpdate>)
