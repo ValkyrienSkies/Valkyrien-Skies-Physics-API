@@ -1,6 +1,6 @@
 package org.valkyrienskies.physics_api.voxel_updates
 
-import java.util.*
+import it.unimi.dsi.fastutil.booleans.BooleanArrayList
 
 /**
  * A complete 16x16x16 region to be updated in a VoxelShape.
@@ -12,7 +12,7 @@ class DenseVoxelShapeUpdate(
     override val regionY: Int,
     override val regionZ: Int
 ) : IVoxelShapeUpdate {
-    val voxelData = BitSet(4096)
+    val voxelData = BooleanArrayList(4096)
 
     inline fun setData(function: (x: Int, y: Int, z: Int) -> Boolean) {
         iterate { x, y, z ->
@@ -24,7 +24,7 @@ class DenseVoxelShapeUpdate(
     inline fun forEachVoxel(function: (x: Int, y: Int, z: Int, Boolean) -> Unit) {
         iterate { x, y, z ->
             val index = toIndex(x, y, z)
-            function(x, y, z, voxelData[index])
+            function(x, y, z, voxelData.getBoolean(index))
         }
     }
 

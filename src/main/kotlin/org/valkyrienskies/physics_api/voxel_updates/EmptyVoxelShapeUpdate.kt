@@ -5,5 +5,5 @@ package org.valkyrienskies.physics_api.voxel_updates
  *
  * Expected use is for regions that are entirely empty.
  */
-class EmptyVoxelShapeUpdate(override val regionX: Int, override val regionY: Int, override val regionZ: Int)
-    : IVoxelShapeUpdate
+class EmptyVoxelShapeUpdate(override val regionX: Int, override val regionY: Int, override val regionZ: Int) :
+    IVoxelShapeUpdate
