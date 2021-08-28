@@ -1,7 +1,7 @@
 package org.valkyrienskies.physics_api.voxel_updates
 
 import org.joml.Vector3ic
-import java.util.*
+import java.util.BitSet
 
 /**
  * A complete 16x16x16 region to be updated in a VoxelShape.
