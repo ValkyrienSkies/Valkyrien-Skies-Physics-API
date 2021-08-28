@@ -2,6 +2,7 @@ package org.valkyrienskies.physics_api.voxel_updates
 
 import it.unimi.dsi.fastutil.booleans.BooleanArrayList
 import it.unimi.dsi.fastutil.shorts.ShortArrayList
+import org.joml.Vector3ic
 
 /**
  * A updates within 16x16x16 region to be updated in a VoxelShape.
@@ -41,5 +42,10 @@ class SparseVoxelShapeUpdate(
         val y = (index shr 8) and 0xF
         val z = (index shr 4) and 0xF
         function(x, y, z)
+    }
+
+    companion object {
+        fun createSparseVoxelShapeUpdate(chunkPos: Vector3ic) =
+            SparseVoxelShapeUpdate(chunkPos.x(), chunkPos.y(), chunkPos.z())
     }
 }

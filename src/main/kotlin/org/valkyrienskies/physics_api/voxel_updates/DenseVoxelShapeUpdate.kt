@@ -1,6 +1,7 @@
 package org.valkyrienskies.physics_api.voxel_updates
 
-import it.unimi.dsi.fastutil.booleans.BooleanArrayList
+import org.joml.Vector3ic
+import java.util.*
 
 /**
  * A complete 16x16x16 region to be updated in a VoxelShape.
@@ -12,7 +13,15 @@ class DenseVoxelShapeUpdate(
     override val regionY: Int,
     override val regionZ: Int
 ) : IVoxelShapeUpdate {
-    val voxelData = BooleanArrayList(4096)
+    val voxelData = BitSet(4096)
+
+    /**
+     * Used to make edits to this update.
+     */
+    fun setVoxel(x: Int, y: Int, z: Int, solid: Boolean) {
+        val index = toIndex(x, y, z)
+        voxelData[index] = solid
+    }
 
     inline fun setData(function: (x: Int, y: Int, z: Int) -> Boolean) {
         iterate { x, y, z ->
@@ -21,10 +30,10 @@ class DenseVoxelShapeUpdate(
         }
     }
 
-    inline fun forEachVoxel(function: (x: Int, y: Int, z: Int, Boolean) -> Unit) {
+    inline fun forEachVoxel(function: (x: Int, y: Int, z: Int, solid: Boolean) -> Unit) {
         iterate { x, y, z ->
             val index = toIndex(x, y, z)
-            function(x, y, z, voxelData.getBoolean(index))
+            function(x, y, z, voxelData.get(index))
         }
     }
 
@@ -41,5 +50,10 @@ class DenseVoxelShapeUpdate(
 
     fun toIndex(x: Int, y: Int, z: Int): Int {
         return (x or (z shl 4) or (y shl 8))
+    }
+
+    companion object {
+        fun createDenseVoxelShapeUpdate(chunkPos: Vector3ic) =
+            DenseVoxelShapeUpdate(chunkPos.x(), chunkPos.y(), chunkPos.z())
     }
 }
