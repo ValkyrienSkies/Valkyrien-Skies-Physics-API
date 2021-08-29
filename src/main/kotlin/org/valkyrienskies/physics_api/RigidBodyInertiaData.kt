@@ -1,8 +1,8 @@
 package org.valkyrienskies.physics_api
 
-import org.joml.Vector3dc
+import org.joml.Vector3d
 
 interface RigidBodyInertiaData {
-    val mass: Double
-    val momentOfInertia: Vector3dc
+    var mass: Double
+    var momentOfInertia: Vector3d
 }
