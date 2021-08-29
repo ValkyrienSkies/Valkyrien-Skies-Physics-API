@@ -23,7 +23,7 @@ class SparseVoxelShapeUpdate(
         updatesTypes.add(setVoxel)
     }
 
-    inline fun forEachVoxelUpdate(function: (x: Int, y: Int, z: Int, Boolean) -> Unit) {
+    inline fun forEachVoxelUpdate(function: (x: Int, y: Int, z: Int, set: Boolean) -> Unit) {
         for (i in 0 until updatesPositions.size) {
             val index = updatesPositions.getShort(i)
             val set = updatesTypes.getBoolean(i)

@@ -4,7 +4,11 @@ import org.joml.Vector3dc
 import org.valkyrienskies.physics_api.voxel_updates.VoxelRigidBodyShapeUpdates
 
 interface PhysicsWorld {
-    fun tick(gravity: Vector3dc, timeStep: Double)
+    /**
+     * If [simulatePhysics] is false then the physics world will still run tasks in the background (like updating terrain),
+     * but it won't simulate any physics.
+     */
+    fun tick(gravity: Vector3dc, timeStep: Double, simulatePhysics: Boolean)
     fun createVoxelRigidBody(): VoxelRigidBody
     fun addRigidBody(rigidBody: RigidBody<*>)
     fun removeRigidBody(rigidBody: RigidBody<*>)
