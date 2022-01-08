@@ -135,18 +135,6 @@ publishing {
                 }
             }
         }
-
-        // Publish to VS maven
-        if ((System.getenv("VS_MAVEN_USERNAME") != null) and (System.getenv("VS_MAVEN_PASSWORD") != null)) {
-            maven {
-                name = "ValkyrienSkiesMaven"
-                url = uri("https://maven.valkyrienskies.org/repository/internal/")
-                credentials {
-                    username = System.getenv("VS_MAVEN_USERNAME")
-                    password = System.getenv("VS_MAVEN_PASSWORD")
-                }
-            }
-        }
     }
     publishing {
         publications {
