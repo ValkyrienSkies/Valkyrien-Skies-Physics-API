@@ -12,7 +12,8 @@ import org.joml.Vector3ic
 class SparseVoxelShapeUpdate(
     override val regionX: Int,
     override val regionY: Int,
-    override val regionZ: Int
+    override val regionZ: Int,
+    override val runImmediately: Boolean = false
 ) : IVoxelShapeUpdate {
     val updatesPositions = ShortArrayList()
     val updatesTypes = BooleanArrayList()

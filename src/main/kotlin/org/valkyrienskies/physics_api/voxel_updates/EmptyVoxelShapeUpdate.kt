@@ -14,5 +14,6 @@ class EmptyVoxelShapeUpdate(
     override val regionX: Int,
     override val regionY: Int,
     override val regionZ: Int,
+    override val runImmediately: Boolean = false,
     val overwriteExistingVoxels: Boolean
 ) : IVoxelShapeUpdate

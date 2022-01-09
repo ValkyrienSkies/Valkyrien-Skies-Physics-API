@@ -11,7 +11,8 @@ import java.util.BitSet
 class DenseVoxelShapeUpdate(
     override val regionX: Int,
     override val regionY: Int,
-    override val regionZ: Int
+    override val regionZ: Int,
+    override val runImmediately: Boolean = false
 ) : IVoxelShapeUpdate {
     val voxelData = BitSet(4096)
 

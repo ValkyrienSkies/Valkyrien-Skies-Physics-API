@@ -9,9 +9,14 @@ interface PhysicsWorld {
      * but it won't simulate any physics.
      */
     fun tick(gravity: Vector3dc, timeStep: Double, simulatePhysics: Boolean)
-    fun createVoxelRigidBody(): VoxelRigidBody
-    fun addRigidBody(rigidBody: RigidBody<*>)
-    fun removeRigidBody(rigidBody: RigidBody<*>)
+
+    /**
+     * Creates a rigid body immediately and returns a reference to it.
+     *
+     * The rigid body is added to this world when this is invoked.
+     */
+    fun createVoxelRigidBody(dimension: Int): RigidBodyReference
+    fun removeRigidBody(rigidBodyId: Int): Boolean
 
     /**
      * Queues [VoxelRigidBodyShapeUpdates] to be run in the background.
