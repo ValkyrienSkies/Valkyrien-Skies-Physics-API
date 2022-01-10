@@ -11,12 +11,18 @@ interface PhysicsWorld {
     fun tick(gravity: Vector3dc, timeStep: Double, simulatePhysics: Boolean)
 
     /**
-     * Creates a rigid body immediately and returns a reference to it.
+     * Create a new rigid body in this [PhysicsWorld] with an initial dimension of [dimension].
      *
-     * The rigid body is added to this world when this is invoked.
+     * @return A [RigidBodyReference] that points to the rigid body created by this function.
      */
     fun createVoxelRigidBody(dimension: Int): RigidBodyReference
-    fun removeRigidBody(rigidBodyId: Int): Boolean
+
+    /**
+     * Deletes the rigid body with id [rigidBodyId] from this world.
+     *
+     * @return True iff a rigid body with id [rigidBodyId] was found and deleted, false otherwise.
+     */
+    fun deleteRigidBody(rigidBodyId: Int): Boolean
 
     /**
      * Queues [VoxelRigidBodyShapeUpdates] to be run in the background.
@@ -24,4 +30,19 @@ interface PhysicsWorld {
      * This function is thread safe.
      */
     fun queueVoxelShapeUpdates(updates: List<VoxelRigidBodyShapeUpdates>)
+
+    /**
+     * Deletes the resources held by this [PhysicsWorld].
+     *
+     * For example, in the Krunch C++ implementation this would be a pointer to the physics world in Krunch C++, and
+     * this function would invoke something like "free(physicsWorldPtr)".
+     */
+    fun deletePhysicsWorldResources()
+
+    /**
+     * Returns true iff the resources held by this [PhysicsWorld] have been deleted.
+     *
+     * If this [PhysicsWorld] has has been deleted then it should not be used anymore.
+     */
+    fun hasBeenDeleted(): Boolean
 }
