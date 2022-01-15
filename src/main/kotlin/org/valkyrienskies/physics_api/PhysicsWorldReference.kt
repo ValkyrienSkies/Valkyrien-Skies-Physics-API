@@ -8,6 +8,7 @@ interface PhysicsWorldReference {
      * If [simulatePhysics] is false then the physics world will still run tasks in the background (like updating terrain),
      * but it won't simulate any physics.
      */
+    @Throws(UsingDeletedReferenceException::class)
     fun tick(gravity: Vector3dc, timeStep: Double, simulatePhysics: Boolean)
 
     /**
@@ -15,6 +16,7 @@ interface PhysicsWorldReference {
      *
      * @return A [RigidBodyReference] that points to the rigid body created by this function.
      */
+    @Throws(UsingDeletedReferenceException::class)
     fun createVoxelRigidBody(dimension: Int): RigidBodyReference
 
     /**
@@ -22,6 +24,7 @@ interface PhysicsWorldReference {
      *
      * @return True iff a rigid body with id [rigidBodyId] was found and deleted, false otherwise.
      */
+    @Throws(UsingDeletedReferenceException::class)
     fun deleteRigidBody(rigidBodyId: Int): Boolean
 
     /**
@@ -29,6 +32,7 @@ interface PhysicsWorldReference {
      *
      * This function is thread safe.
      */
+    @Throws(UsingDeletedReferenceException::class)
     fun queueVoxelShapeUpdates(updates: List<VoxelRigidBodyShapeUpdates>)
 
     /**

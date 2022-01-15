@@ -6,7 +6,7 @@ import org.joml.Vector3dc
  * A reference to a Rigid Body. The rigid body is actually stored in [physicsWorldReference]; this reference allows you
  * to view and mutate the Rigid Body.
  *
- * Note that [RigidBodyReference]s do not "own" the memory of the Rigid Body they point to (see [isReferenceValid]).
+ * Note that [RigidBodyReference]s do not "own" the memory of the Rigid Body they point to (see [hasBeenDeleted]).
  */
 interface RigidBodyReference { // <T : CollisionShape> {
     val rigidBodyId: Int
@@ -14,16 +14,33 @@ interface RigidBodyReference { // <T : CollisionShape> {
     // TODO: Maybe in the future allow the collision shape to be changed. Use something like a C++ move constructor to
     //       move resources from the inputted collision shape (to efficiently move the voxel shape data to the rigid body).
     // var collisionShape: T
+    @get:Throws(UsingDeletedReferenceException::class)
+    @set:Throws(UsingDeletedReferenceException::class)
     var rigidBodyTransform: RigidBodyTransform
+    @get:Throws(UsingDeletedReferenceException::class)
+    @set:Throws(UsingDeletedReferenceException::class)
     var inertiaData: RigidBodyInertiaData
+    @get:Throws(UsingDeletedReferenceException::class)
+    @set:Throws(UsingDeletedReferenceException::class)
     var isStatic: Boolean
+    @get:Throws(UsingDeletedReferenceException::class)
+    @set:Throws(UsingDeletedReferenceException::class)
     var restitutionCoefficient: Double
+    @get:Throws(UsingDeletedReferenceException::class)
+    @set:Throws(UsingDeletedReferenceException::class)
     var dynamicFrictionCoefficient: Double
+    @get:Throws(UsingDeletedReferenceException::class)
+    @set:Throws(UsingDeletedReferenceException::class)
     var staticFrictionCoefficient: Double
+    @get:Throws(UsingDeletedReferenceException::class)
+    @set:Throws(UsingDeletedReferenceException::class)
     var collisionShapeScaling: Double
+    @get:Throws(UsingDeletedReferenceException::class)
+    @set:Throws(UsingDeletedReferenceException::class)
     var collisionShapeOffset: Vector3dc
     // TODO: In the future replace dimension with a localPos -> dimension map for portal physics
-    var dimension: Int
+    @get:Throws(UsingDeletedReferenceException::class)
+    val initialDimension: Int
     val physicsWorldReference: PhysicsWorldReference
 
     /**
@@ -31,5 +48,5 @@ interface RigidBodyReference { // <T : CollisionShape> {
      *
      * If this returns false then this reference is no longer valid; using it could break things so avoid that.
      */
-    fun isReferenceValid(): Boolean
+    fun hasBeenDeleted(): Boolean
 }
