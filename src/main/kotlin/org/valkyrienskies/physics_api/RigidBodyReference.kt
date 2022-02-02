@@ -19,6 +19,12 @@ interface RigidBodyReference { // <T : CollisionShape> {
     var rigidBodyTransform: RigidBodyTransform
     @get:Throws(UsingDeletedReferenceException::class)
     @set:Throws(UsingDeletedReferenceException::class)
+    var velocity: Vector3dc
+    @get:Throws(UsingDeletedReferenceException::class)
+    @set:Throws(UsingDeletedReferenceException::class)
+    var omega: Vector3dc
+    @get:Throws(UsingDeletedReferenceException::class)
+    @set:Throws(UsingDeletedReferenceException::class)
     var inertiaData: RigidBodyInertiaData
     @get:Throws(UsingDeletedReferenceException::class)
     @set:Throws(UsingDeletedReferenceException::class)
