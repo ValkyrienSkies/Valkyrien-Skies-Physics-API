@@ -33,7 +33,7 @@ interface PhysicsWorldReference {
      * This function is thread safe.
      */
     @Throws(UsingDeletedReferenceException::class)
-    fun queueVoxelShapeUpdates(updates: List<VoxelRigidBodyShapeUpdates>)
+    fun queueVoxelShapeUpdates(updates: Array<VoxelRigidBodyShapeUpdates>)
 
     /**
      * Deletes the resources held by this [PhysicsWorldReference].
