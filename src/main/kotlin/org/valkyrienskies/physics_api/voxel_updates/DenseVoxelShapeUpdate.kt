@@ -1,7 +1,7 @@
 package org.valkyrienskies.physics_api.voxel_updates
 
 import org.joml.Vector3ic
-import java.util.BitSet
+import java.util.*
 
 /**
  * A complete 16x16x16 region to be updated in a VoxelShape.
@@ -12,10 +12,9 @@ class DenseVoxelShapeUpdate(
     override val regionX: Int,
     override val regionY: Int,
     override val regionZ: Int,
-    override val runImmediately: Boolean = false
+    override val runImmediately: Boolean = false,
+    val voxelData: BitSet = BitSet(4096)
 ) : IVoxelShapeUpdate {
-    val voxelData = BitSet(4096)
-
     /**
      * Used to make edits to this update.
      */
