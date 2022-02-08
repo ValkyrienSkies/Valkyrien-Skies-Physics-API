@@ -1,7 +1,6 @@
 package org.valkyrienskies.physics_api.voxel_updates
 
 import org.joml.Vector3ic
-import java.util.*
 
 /**
  * A complete 16x16x16 region to be updated in a VoxelShape.
@@ -13,27 +12,31 @@ class DenseVoxelShapeUpdate(
     override val regionY: Int,
     override val regionZ: Int,
     override val runImmediately: Boolean = false,
-    val voxelData: BitSet = BitSet(4096)
+    private val voxelData: ByteArray = ByteArray(4096)
 ) : IVoxelShapeUpdate {
+
     /**
      * Used to make edits to this update.
      */
-    fun setVoxel(x: Int, y: Int, z: Int, solid: Boolean) {
+    fun setVoxel(x: Int, y: Int, z: Int, data: Byte) {
         val index = toIndex(x, y, z)
-        voxelData[index] = solid
+        voxelData[index] = data
     }
 
-    inline fun setData(function: (x: Int, y: Int, z: Int) -> Boolean) {
+    fun getVoxel(x: Int, y: Int, z: Int): Byte {
+        val index = toIndex(x, y, z)
+        return voxelData[index]
+    }
+
+    inline fun setData(function: (x: Int, y: Int, z: Int) -> Byte) {
         iterate { x, y, z ->
-            val index = toIndex(x, y, z)
-            voxelData[index] = function(x, y, z)
+            setVoxel(x, y, z, function(x, y, z))
         }
     }
 
-    inline fun forEachVoxel(function: (x: Int, y: Int, z: Int, solid: Boolean) -> Unit) {
+    inline fun forEachVoxel(function: (x: Int, y: Int, z: Int, voxelState: Byte) -> Unit) {
         iterate { x, y, z ->
-            val index = toIndex(x, y, z)
-            function(x, y, z, voxelData.get(index))
+            function(x, y, z, getVoxel(x, y, z))
         }
     }
 
@@ -48,7 +51,7 @@ class DenseVoxelShapeUpdate(
         }
     }
 
-    fun toIndex(x: Int, y: Int, z: Int): Int {
+    private fun toIndex(x: Int, y: Int, z: Int): Int {
         return (x or (z shl 4) or (y shl 8))
     }
 

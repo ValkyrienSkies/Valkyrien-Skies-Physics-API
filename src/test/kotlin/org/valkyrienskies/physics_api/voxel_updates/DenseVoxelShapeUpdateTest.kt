@@ -6,25 +6,22 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.RepeatedTest
 import kotlin.random.Random
 
-internal class SparseVoxelShapeUpdateTest {
+internal class DenseVoxelShapeUpdateTest {
 
     @RepeatedTest(100)
     fun testForEachVoxelUpdate() {
-        val sparseUpdate = SparseVoxelShapeUpdate(0, 0, 0)
+        val denseUpdate = DenseVoxelShapeUpdate(0, 0, 0)
         val groundTruthList = ArrayList<Pair<Vector3ic, Byte>>()
         for (i in 0 until 100) {
             val pos = randomVector3ic()
-            val set = Random.nextBoolean()
-            val voxelState = if (set) KrunchVoxelStates.SOLID_STATE else KrunchVoxelStates.AIR_STATE
-            sparseUpdate.addUpdate(pos.x(), pos.y(), pos.z(), voxelState)
-            groundTruthList.add(Pair(pos, voxelState))
+            denseUpdate.setVoxel(pos.x(), pos.y(), pos.z(), KrunchVoxelStates.SOLID_STATE)
+            groundTruthList.add(Pair(pos, KrunchVoxelStates.SOLID_STATE))
         }
 
-        var index = 0
-        sparseUpdate.forEachVoxelUpdate { x, y, z, data ->
-            val updatePair = groundTruthList[index++]
-            assertEquals(updatePair.first, Vector3i(x, y, z))
-            assertEquals(updatePair.second, data)
+        groundTruthList.forEach {
+            val pos = it.first
+            val data = it.second
+            assertEquals(denseUpdate.getVoxel(pos.x(), pos.y(), pos.z()), data)
         }
     }
 

@@ -1,6 +1,6 @@
 package org.valkyrienskies.physics_api.voxel_updates
 
-import it.unimi.dsi.fastutil.booleans.BooleanArrayList
+import it.unimi.dsi.fastutil.bytes.ByteArrayList
 import it.unimi.dsi.fastutil.shorts.ShortArrayList
 import org.joml.Vector3ic
 
@@ -16,20 +16,20 @@ class SparseVoxelShapeUpdate(
     override val runImmediately: Boolean = false
 ) : IVoxelShapeUpdate {
     val updatesPositions = ShortArrayList()
-    val updatesTypes = BooleanArrayList()
+    val updatesTypes = ByteArrayList()
 
-    fun addUpdate(x: Int, y: Int, z: Int, setVoxel: Boolean) {
+    fun addUpdate(x: Int, y: Int, z: Int, voxelState: Byte) {
         val index = toIndex(x, y, z)
         updatesPositions.add(index.toShort())
-        updatesTypes.add(setVoxel)
+        updatesTypes.add(voxelState)
     }
 
-    inline fun forEachVoxelUpdate(function: (x: Int, y: Int, z: Int, set: Boolean) -> Unit) {
+    inline fun forEachVoxelUpdate(function: (x: Int, y: Int, z: Int, voxelState: Byte) -> Unit) {
         for (i in 0 until updatesPositions.size) {
             val index = updatesPositions.getShort(i)
-            val set = updatesTypes.getBoolean(i)
+            val voxelState = updatesTypes.getByte(i)
             fromIndex(index.toInt()) { x: Int, y: Int, z: Int ->
-                function(x, y, z, set)
+                function(x, y, z, voxelState)
             }
         }
     }
