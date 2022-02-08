@@ -55,6 +55,10 @@ data class DenseVoxelShapeUpdate(
         return (x or (z shl 4) or (y shl 8))
     }
 
+    fun getVoxelDataRaw(): ByteArray {
+        return voxelDataRaw
+    }
+
     // Auto generated
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
