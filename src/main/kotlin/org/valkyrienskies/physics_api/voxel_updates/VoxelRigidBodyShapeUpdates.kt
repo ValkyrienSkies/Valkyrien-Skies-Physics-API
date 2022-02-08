@@ -1,6 +1,7 @@
 package org.valkyrienskies.physics_api.voxel_updates
 
 data class VoxelRigidBodyShapeUpdates(val rigidBodyId: Int, val shapeUpdates: Array<IVoxelShapeUpdate>) {
+    // Auto generated
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -13,6 +14,7 @@ data class VoxelRigidBodyShapeUpdates(val rigidBodyId: Int, val shapeUpdates: Ar
         return true
     }
 
+    // Auto generated
     override fun hashCode(): Int {
         var result = rigidBodyId
         result = 31 * result + shapeUpdates.contentHashCode()

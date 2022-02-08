@@ -7,12 +7,12 @@ import org.joml.Vector3ic
  *
  * Expected use is for when new terrain is loaded.
  */
-class DenseVoxelShapeUpdate(
+data class DenseVoxelShapeUpdate(
     override val regionX: Int,
     override val regionY: Int,
     override val regionZ: Int,
     override val runImmediately: Boolean = false,
-    private val voxelData: ByteArray = ByteArray(4096)
+    private val voxelDataRaw: ByteArray = ByteArray(4096)
 ) : IVoxelShapeUpdate {
 
     /**
@@ -20,12 +20,12 @@ class DenseVoxelShapeUpdate(
      */
     fun setVoxel(x: Int, y: Int, z: Int, data: Byte) {
         val index = toIndex(x, y, z)
-        voxelData[index] = data
+        voxelDataRaw[index] = data
     }
 
     fun getVoxel(x: Int, y: Int, z: Int): Byte {
         val index = toIndex(x, y, z)
-        return voxelData[index]
+        return voxelDataRaw[index]
     }
 
     inline fun setData(function: (x: Int, y: Int, z: Int) -> Byte) {
@@ -55,12 +55,30 @@ class DenseVoxelShapeUpdate(
         return (x or (z shl 4) or (y shl 8))
     }
 
-    /**
-     * Used to access the raw view of this [DenseVoxelShapeUpdate]. You probably shouldn't use this unless you want to
-     * write this object to binary.
-     */
-    fun getVoxelDataRaw(): ByteArray {
-        return voxelData
+    // Auto generated
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as DenseVoxelShapeUpdate
+
+        if (regionX != other.regionX) return false
+        if (regionY != other.regionY) return false
+        if (regionZ != other.regionZ) return false
+        if (runImmediately != other.runImmediately) return false
+        if (!voxelDataRaw.contentEquals(other.voxelDataRaw)) return false
+
+        return true
+    }
+
+    // Auto generated
+    override fun hashCode(): Int {
+        var result = regionX
+        result = 31 * result + regionY
+        result = 31 * result + regionZ
+        result = 31 * result + runImmediately.hashCode()
+        result = 31 * result + voxelDataRaw.contentHashCode()
+        return result
     }
 
     companion object {

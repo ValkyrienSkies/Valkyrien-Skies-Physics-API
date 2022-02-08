@@ -9,7 +9,7 @@ import org.joml.Vector3ic
  *
  * Expected use is for block changes to already loaded terrain.
  */
-class SparseVoxelShapeUpdate(
+data class SparseVoxelShapeUpdate(
     override val regionX: Int,
     override val regionY: Int,
     override val regionZ: Int,

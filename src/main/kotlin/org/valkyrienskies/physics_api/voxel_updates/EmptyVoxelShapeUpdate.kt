@@ -10,7 +10,7 @@ package org.valkyrienskies.physics_api.voxel_updates
  * If [overwriteExistingVoxels] is false then this update will mark a voxel region as loaded and empty only if the voxel
  * region was unloaded before this update.
  */
-class EmptyVoxelShapeUpdate(
+data class EmptyVoxelShapeUpdate(
     override val regionX: Int,
     override val regionY: Int,
     override val regionZ: Int,
