@@ -55,6 +55,14 @@ class DenseVoxelShapeUpdate(
         return (x or (z shl 4) or (y shl 8))
     }
 
+    /**
+     * Used to access the raw view of this [DenseVoxelShapeUpdate]. You probably shouldn't use this unless you want to
+     * write this object to binary.
+     */
+    fun getVoxelDataRaw(): ByteArray {
+        return voxelData
+    }
+
     companion object {
         fun createDenseVoxelShapeUpdate(chunkPos: Vector3ic) =
             DenseVoxelShapeUpdate(chunkPos.x(), chunkPos.y(), chunkPos.z())
