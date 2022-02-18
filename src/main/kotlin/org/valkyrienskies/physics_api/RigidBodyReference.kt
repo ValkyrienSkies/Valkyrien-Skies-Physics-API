@@ -44,7 +44,7 @@ interface RigidBodyReference { // <T : CollisionShape> {
     @get:Throws(UsingDeletedReferenceException::class)
     @set:Throws(UsingDeletedReferenceException::class)
     var collisionShapeOffset: Vector3dc
-    // TODO: In the future replace dimension with a localPos -> dimension map for portal physics
+    // TODO: In the future replace dimension with a localPos -> portalTransformId map for portal physics
     @get:Throws(UsingDeletedReferenceException::class)
     val initialDimension: Int
     val physicsWorldReference: PhysicsWorldReference
