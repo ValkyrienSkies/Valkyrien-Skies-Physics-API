@@ -17,12 +17,15 @@ interface PhysicsWorldReference {
      * Create a new rigid body in this [PhysicsWorldReference] with an initial dimension of [dimension].
      *
      * The voxel shape for this rigid body will be defined for all positions between [minDefined] and [maxDefined].
-     * This means that everything outside this range will be assumed to be empty until a [IVoxelShapeUpdate] defines
+     * This means that everything outside this range will be assumed to be empty until a [IVoxelShapeUpdate] defines it.
      *
      *
      * For example, a typical minecraft world voxel rigid body will have these values set to the following:
      *  [minDefined] = {[Int.MIN_VALUE], 0, [Int.MIN_VALUE]}
      *  [maxDefined] = {[Int.MAX_VALUE], 255, [Int.MAX_VALUE]}
+     *
+     * Note that for now [minDefined] should be the min value of a chunk boundary (ex. {0, 0, 0}), and [maxDefined]
+     * should be the max value of a chunk boundary (ex. {15, 15, 15}).
      *
      * @return A [RigidBodyReference] that points to the rigid body created by this function.
      */
