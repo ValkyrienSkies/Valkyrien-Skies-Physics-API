@@ -20,5 +20,4 @@ data class VoxelRigidBodyShapeUpdates(val rigidBodyId: Int, val shapeUpdates: Ar
         result = 31 * result + shapeUpdates.contentHashCode()
         return result
     }
-
 }
