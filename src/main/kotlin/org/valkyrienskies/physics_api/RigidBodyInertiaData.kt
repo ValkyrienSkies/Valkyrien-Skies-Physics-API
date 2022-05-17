@@ -1,5 +1,5 @@
 package org.valkyrienskies.physics_api
 
-import org.joml.Vector3dc
+import org.joml.Matrix3dc
 
-data class RigidBodyInertiaData(val mass: Double, val momentOfInertia: Vector3dc)
+data class RigidBodyInertiaData(val mass: Double, val momentOfInertia: Matrix3dc)
