@@ -55,7 +55,7 @@ interface RigidBodyReference { // <T : CollisionShape> {
      */
     @get:Throws(UsingDeletedReferenceException::class)
     @set:Throws(UsingDeletedReferenceException::class)
-    var isVoxelTerrainFullyLoaded: Vector3dc
+    var isVoxelTerrainFullyLoaded: Boolean
     val physicsWorldReference: PhysicsWorldReference
 
     /**
