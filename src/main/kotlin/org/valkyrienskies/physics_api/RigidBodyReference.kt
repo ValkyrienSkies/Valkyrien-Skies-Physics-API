@@ -47,6 +47,15 @@ interface RigidBodyReference { // <T : CollisionShape> {
     // TODO: In the future replace dimension with a localPos -> portalTransformId map for portal physics
     @get:Throws(UsingDeletedReferenceException::class)
     val initialDimension: Int
+    /**
+     * Marks a rigid body as having its terrain fully loaded. The rigid body will be static until it its terrain has
+     * been marked as fully loaded.
+     *
+     * World bodies should never be marked as fully loaded, because they are infinite in size.
+     */
+    @get:Throws(UsingDeletedReferenceException::class)
+    @set:Throws(UsingDeletedReferenceException::class)
+    var isVoxelTerrainFullyLoaded: Vector3dc
     val physicsWorldReference: PhysicsWorldReference
 
     /**
