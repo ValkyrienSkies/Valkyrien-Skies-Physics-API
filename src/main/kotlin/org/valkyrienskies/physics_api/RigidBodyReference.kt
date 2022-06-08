@@ -59,6 +59,45 @@ interface RigidBodyReference { // <T : CollisionShape> {
     val physicsWorldReference: PhysicsWorldReference
 
     /**
+     * Applies a torque that will be rotated as the body rotates for the duration of the next phys tick only.
+     *
+     * This is suitable for batching the torque from blocks whose position and force direction both depend on rotation.
+     *
+     * This is NOT suitable for blocks whose force direction is independent of rotation; for example, balloon blocks
+     * that only push up.
+     *
+     * Proof of correctness:
+     * Let A be the force position and let B be the force; we can rewrite the torque equation as follows:
+     *
+     * (R * A) x (R * B) = R * (A x B)
+     */
+    fun addRotDependentTorqueToNextPhysTick(torqueInLocal: Vector3dc)
+
+    /**
+     * Applies a rotation-invariant torque for the duration of the next tick only.
+     */
+    fun addInvariantTorqueToNextPhysTick(invariantTorque: Vector3dc)
+
+    /**
+     * Applies a force that will be rotated as the body rotates for the duration of the next tick only.
+     */
+    fun addRotDependentForceToNextPhysTick(forceInLocal: Vector3dc)
+
+    /**
+     * Applies a rotation-invariant force for the duration of the next tick only.
+     */
+    fun addInvariantForceToNextPhysTick(invariantForce: Vector3dc)
+
+    /**
+     * This will apply [invariantForce] at [forcePosInLocal] for the duration of the next tick only.
+     *
+     * Blocks that always push in the same direction, like balloons, should use this function.
+     *
+     * Blocks whose force go the same direction can be batched such that they only need 1 call to this per phys tick.
+     */
+    fun addInvariantForceAtPosToNextPhysTick(forcePosInLocal: Vector3dc, invariantForce: Vector3dc)
+
+    /**
      * Returns true iff this rigid body this reference points to actually exists, false otherwise.
      *
      * If this returns false then this reference is no longer valid; using it could break things so avoid that.
