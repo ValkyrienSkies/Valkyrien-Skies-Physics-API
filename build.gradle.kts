@@ -1,8 +1,7 @@
 plugins {
-    kotlin("jvm") version "1.5.0"
+    kotlin("jvm") version "1.6.10"
     id("org.jlleitschuh.gradle.ktlint") version "10.0.0"
     java
-    maven
     checkstyle
     `maven-publish`
 }
