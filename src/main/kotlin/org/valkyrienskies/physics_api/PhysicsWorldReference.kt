@@ -36,7 +36,12 @@ interface PhysicsWorldReference {
      * @return A [RigidBodyReference] that points to the rigid body created by this function.
      */
     @Throws(UsingDeletedReferenceException::class)
-    fun createVoxelRigidBody(dimension: Int, minDefined: Vector3ic, maxDefined: Vector3ic, totalVoxelRegion: AABBic): RigidBodyReference
+    fun createVoxelRigidBody(
+        dimension: Int,
+        minDefined: Vector3ic,
+        maxDefined: Vector3ic,
+        totalVoxelRegion: AABBic
+    ): RigidBodyReference
 
     /**
      * Deletes the rigid body with id [rigidBodyId] from this world.
