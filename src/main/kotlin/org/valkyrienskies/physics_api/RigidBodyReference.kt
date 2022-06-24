@@ -1,6 +1,8 @@
 package org.valkyrienskies.physics_api
 
 import org.joml.Vector3dc
+import org.joml.primitives.AABBd
+import org.joml.primitives.AABBi
 
 /**
  * A reference to a Rigid Body. The rigid body is actually stored in [physicsWorldReference]; this reference allows you
@@ -103,4 +105,14 @@ interface RigidBodyReference { // <T : CollisionShape> {
      * If this returns false then this reference is no longer valid; using it could break things so avoid that.
      */
     fun hasBeenDeleted(): Boolean
+
+    /**
+     * @return True if the operation was successful, false otherwise
+     */
+    fun getVoxelShapeAABB(output: AABBi): Boolean
+
+    /**
+     * @return True if the operation was successful, false otherwise
+     */
+    fun getAABB(output: AABBd): Boolean
 }
