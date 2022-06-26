@@ -12,6 +12,7 @@ import org.joml.primitives.AABBi
  */
 interface RigidBodyReference { // <T : CollisionShape> {
     val rigidBodyId: Int
+
     // For now just make the collisionShape always be voxel
     // TODO: Maybe in the future allow the collision shape to be changed. Use something like a C++ move constructor to
     //       move resources from the inputted collision shape (to efficiently move the voxel shape data to the rigid body).
@@ -19,30 +20,39 @@ interface RigidBodyReference { // <T : CollisionShape> {
     @get:Throws(UsingDeletedReferenceException::class)
     @set:Throws(UsingDeletedReferenceException::class)
     var rigidBodyTransform: RigidBodyTransform
+
     @get:Throws(UsingDeletedReferenceException::class)
     @set:Throws(UsingDeletedReferenceException::class)
     var velocity: Vector3dc
+
     @get:Throws(UsingDeletedReferenceException::class)
     @set:Throws(UsingDeletedReferenceException::class)
     var omega: Vector3dc
+
     @get:Throws(UsingDeletedReferenceException::class)
     @set:Throws(UsingDeletedReferenceException::class)
     var inertiaData: RigidBodyInertiaData
+
     @get:Throws(UsingDeletedReferenceException::class)
     @set:Throws(UsingDeletedReferenceException::class)
     var isStatic: Boolean
+
     @get:Throws(UsingDeletedReferenceException::class)
     @set:Throws(UsingDeletedReferenceException::class)
     var restitutionCoefficient: Double
+
     @get:Throws(UsingDeletedReferenceException::class)
     @set:Throws(UsingDeletedReferenceException::class)
     var dynamicFrictionCoefficient: Double
+
     @get:Throws(UsingDeletedReferenceException::class)
     @set:Throws(UsingDeletedReferenceException::class)
     var staticFrictionCoefficient: Double
+
     @get:Throws(UsingDeletedReferenceException::class)
     @set:Throws(UsingDeletedReferenceException::class)
     var collisionShapeScaling: Double
+
     @get:Throws(UsingDeletedReferenceException::class)
     @set:Throws(UsingDeletedReferenceException::class)
     var collisionShapeOffset: Vector3dc
