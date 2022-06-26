@@ -12,6 +12,7 @@ import org.joml.primitives.AABBi
  */
 interface RigidBodyReference { // <T : CollisionShape> {
     val rigidBodyId: Int
+    val physicsWorldReference: PhysicsWorldReference
 
     // For now just make the collisionShape always be voxel
     // TODO: Maybe in the future allow the collision shape to be changed. Use something like a C++ move constructor to
@@ -66,7 +67,6 @@ interface RigidBodyReference { // <T : CollisionShape> {
     @get:Throws(UsingDeletedReferenceException::class)
     @set:Throws(UsingDeletedReferenceException::class)
     var isVoxelTerrainFullyLoaded: Boolean
-    val physicsWorldReference: PhysicsWorldReference
 
     /**
      * Applies a torque that will be rotated as the body rotates for the duration of the next phys tick only.
