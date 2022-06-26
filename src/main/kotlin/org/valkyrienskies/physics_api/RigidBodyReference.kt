@@ -46,9 +46,7 @@ interface RigidBodyReference { // <T : CollisionShape> {
     @get:Throws(UsingDeletedReferenceException::class)
     @set:Throws(UsingDeletedReferenceException::class)
     var collisionShapeOffset: Vector3dc
-    // TODO: In the future replace dimension with a localPos -> portalTransformId map for portal physics
-    @get:Throws(UsingDeletedReferenceException::class)
-    val initialDimension: Int
+
     /**
      * Marks a rigid body as having its terrain fully loaded. The rigid body will be static until it its terrain has
      * been marked as fully loaded.
